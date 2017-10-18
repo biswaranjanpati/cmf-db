@@ -66,9 +66,9 @@ activityRef.orderBy("createdAt", 'desc').onSnapshot(function(docSnapShot) {
 				return str;
 			}
 		
-		listEl.innerHTML = createList(listTitle);
 		
-		$("#list").append(listEl.innerHTML);
+		
+		$("#listActivities").append(createList(listTitle));
     
 	
     });
