@@ -1,20 +1,10 @@
 // Initialize Cloud Firestore through Firebase
-var db = firebase.firestore();
-
-db.collection("activities").get().then(function(querySnapshot) {
-    querySnapshot.forEach(function(doc) {
-        //console.log(doc.id, " => ", doc.data());
-		console.log(doc.data().title);
-		abc();
-    });
-});
-
- 
+//var db = firebase.firestore();
 
 
 //Defining the DOM elements
 var submitButton = document.querySelector("#submitButton");
-var listActivities = document.querySelector("#listActivities");
+//var listActivities = document.querySelector("#listActivities");
 
 //Attaching a listener function
 //addInput.addEventListener('keyup', handleSubmit);
@@ -58,78 +48,29 @@ function handleSubmit(e) {
 
 // Listener for rendering todos
 activityRef.orderBy("createdAt", 'desc').onSnapshot(function(docSnapShot) {
-  listActivities.innerHTML = "";
+  //listActivities.innerHTML = "";
   docSnapShot.forEach(function(doc) {
-    activity = doc.data();
-    activity.id = doc.id;
+    //activity = doc.data();
+    //activity.id = doc.id;
 	  
-	  var date = activity.createdAt;
-	  var date = new Date(date);
-	  var date = date.getDate() + "/" +  (date.getMonth() + 1) + "/" + date.getFullYear();
-
-	  
-	  var dateBlock = document.createElement("p");
-	  dateBlock.innerHTML = date;
-	  
-	 
-	 
-	  
-	  
-    /*var checkBox = document.createElement("INPUT");
-    checkBox.setAttribute("type", "checkbox");
-    checkBox.setAttribute("data-id", activity.id);
-    checkBox.checked = activity.checked;
-    checkBox.addEventListener('change', handleCheckToggle);
-    */
-	  
-	  
-	  
-    var titleBlock = document.createElement("ul");
-    //titleBlock.innerHTML = activity.title;
-	//var list = document.getElementById("titleBlock");
-	  
-	  
-	  
-	  //console.log(activity);
-	  
-	  //console.log(activity.title);
-	  
-	  
-	 var abc = function (){
-		 var listEl = document.getElementById('listActivities');
-
-		var spellingList = activity.title;
-
-		var populateList = function (arr) {
-			var str = '';
-			for (var i = 0; i < arr.length; i++) {
-				str += '<li>' + arr[i] + '</li>';
+	
+	    var listEl = document.getElementById('listActivities');
+		
+		var listTitle = doc.data().title;
+		
+		var createList = function (arr) {
+				var str = '';
+				for (var i = 0; i < arr.length; i++) {
+					str += '<li>' + arr[i] + '</li>';
+				}
+				return str;
 			}
-			return str;
-		}
+		
+		listEl.innerHTML = createList(listTitle);
+		
+		$("#list").append(listEl.innerHTML);
+    
+	
+    });
+  });
 
-		listEl.innerHTML = populateList(spellingList);
-
-	 }
-	    
-	  
-	  
-	  
-    var wrapper= document.createElement('li');
-   // wrapper.appendChild(checkBox);
-      //wrapper.appendChild(titleBlock);
-	  wrapper.appendChild(dateBlock);
-
-    listActivities.appendChild(wrapper);
-  })
-});
-
-
-/*function handleCheckToggle(e) {
-  var targetElement = e.target;
-  var checked = targetElement.checked;
-  var id = targetElement.dataset.id;
-  activityRef.doc(id).update({
-    checked: checked,
-  })
-}*/
