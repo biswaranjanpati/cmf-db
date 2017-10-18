@@ -38,9 +38,20 @@
       <div class="page-header">
         <h1>Testing</h1>
 		    <div class="addActivity">
-			    <input type="text" name="report" class="addInput" placeholder="Type">
-				<input type="text" name="report" class="addInput" placeholder="Type">
-			  <button id="submitButton">Create</button>
+				
+				
+					<input id='theButton' type='button' value='Add +'>
+					<div id='theForm'>
+						<input type="text" name="report" class="addInput" placeholder="Type">
+					</div>
+					<button id="submitButton">Create</button>
+				
+				
+				
+				
+			    <!--<input type="text" name="report" class="addInput" placeholder="Type">
+				<input type="text" name="report" class="addInput" placeholder="Type">-->
+			  
 			</div>
 		  
 		  <ul id="listActivities"></ul>
@@ -68,6 +79,20 @@
 	  firebase.initializeApp(config);
 	</script>
 	  <script src="main.js"></script>
+	  
+	  <script>
+	  jQuery(function($) {
+  
+		  
+
+		  $('#theButton').click(addAnotherTextBox);
+
+		  function addAnotherTextBox() {
+			$("#theForm").append("<br> <input type='text' name='report' class='addInput' placeholder='Type' > ");
+		  }
+
+		});
+	  </script>
   </body>
 </html>
 
